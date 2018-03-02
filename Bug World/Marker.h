@@ -21,10 +21,10 @@ public:
     Marker(const Marker& orig);
     virtual ~Marker();
     Marker::Marker();
-    void set_marker(int mark, int col);
-    void clear_marker(int mark, int col);
-    bool check_marker(int mark, int col);
-    bool check_other_marker(int col);
+    void set_marker(tmark mark, tcolor col);
+    void clear_marker(tmark mark, tcolor col);
+    bool check_marker(tmark mark, tcolor col);
+    bool check_other_marker(tcolor col);
     
     void set_bits(int bit);
     
@@ -33,4 +33,3 @@ public:
 };
 
 #endif /* MARKER_H */
-

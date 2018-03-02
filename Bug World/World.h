@@ -14,6 +14,7 @@
 #ifndef WORLD_H
 #define WORLD_H
 #include <string>
+#include "headers.h"
 using namespace std;
 
 class World {
@@ -26,10 +27,10 @@ public:
 private:
     void load(string filename);
     void execute_cycle();
-    Cell get_cell(int* pos);
-    int* adjacent(int dir, int* pos);
-    int other_color(int col);
-    int winner();
+    Cell get_cell(tposition pos);
+    int* adjacent(tdir dir, tposition pos);
+    int other_color(tcolor col);
+    tcolor winner();
     int red_food();
     int black_food();
     int red_count();
@@ -46,4 +47,3 @@ private:
 };
 
 #endif /* WORLD_H */
-

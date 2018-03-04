@@ -28,4 +28,24 @@ void Marker::set_bits(int bit){
     
 int Marker::get_bits(){
     return bits;
-    }
+}
+
+void set_marker(tmark mark, tcolor col)
+{
+     
+}
+ 
+void clear_marker(tmark mark, tcolor col)
+{
+     
+}
+ 
+bool check_marker(tmark mark, tcolor col)
+{
+     
+}
+   
+bool check_other_marker(tcolor col)
+{
+}
+}

@@ -1,6 +1,5 @@
-
-
 #include "Bug.h"
+#include <cstdlib>
 /*
  * # - obstacle
  * . - clear cell
@@ -10,12 +9,60 @@
  * 
  * as many bugs as many home area cells
  */
+int i=1;//bug prog id index
+
 Cell::Cell(char symb)
 {
     switch(symb){
         case '#' :
-                occupant=null;
-                
+            occupant=NULL;
+            obstructed=1;
+            food=0;
+            mark=NULL;
+            home_black_bug=0;
+            home_red_bug=0;
+            break;
+        case '.':
+            occupant=NULL;
+            obstructed=0;
+            food=0;
+            mark=NULL;
+            home_black_bug=0;
+            home_red_bug=0;
+            break;
+        case '-':
+            occupant=new Bug(0,i,14);
+            i++;
+            obstructed=1;
+            food=0;
+            mark=NULL;
+            home_black_bug=1;
+            home_red_bug=0;
+            break;
+        case '+':
+            occupant=new Bug(1,i,14);
+            i++;
+            obstructed=1;
+            food=0;
+            mark=NULL;
+            home_black_bug=0;
+            home_red_bug=1;
+            break;
+        default:
+            if(symb<='9'&&symb>='0')
+            {
+                occupant=NULL;
+                obstructed=0;
+                food=symb-'0';
+                mark=NULL;
+                home_black_bug=0;
+                home_red_bug=0;
+            }
+            else
+            {
+                throw "Invalid cell specifier passed\n";
+            }
+            break;
     }
     
 }
@@ -29,7 +76,7 @@ Bug Cell::get_occupant()
     
 void Cell::set_occupant(Bug new_occupant)
 {
-    ocupant=new_ocupant;
+    occupant=new_occupant;
 }
     
 int Cell::get_food()
@@ -39,6 +86,10 @@ int Cell::get_food()
     
 void Cell::set_food(int new_food)
 {
+    if(food<0)
+    {
+        throw "The amount of food can't be negative\n";
+    }
     food=new_food;
 }
     

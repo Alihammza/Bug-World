@@ -1,14 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   tmark.h
- * Author: oana
- *
- * Created on March 2, 2018, 6:41 PM
+ * Helper class tmark equiped with validity checker and equality checkers
  */
 
 #ifndef TMARK_H
@@ -24,10 +15,25 @@ public:
     {
         if(nmark<0||nmark>5)
         {
-            std::cerr<<"Mark should be in 0..5\n";
-            exit(EXIT_FAILURE);
+            throw "Mark should be in 0..5\n";
         }
         mark=nmark;
+    }
+    tmark()
+    {
+        mark=0;
+    }
+    bool operator==(tmark const& a)
+    {
+        if(mark==a.mark)
+            return 1;
+        return 0;
+    }
+    bool operator!=(tmark const& a)
+    {
+        if(mark==a.mark)
+            return 0;
+        return 1;
     }
 };
 

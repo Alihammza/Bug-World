@@ -1,14 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   tleftright.h
- * Author: oana
- *
- * Created on March 2, 2018, 6:38 PM
+ * Helper class tmark equiped with validity checker and equality checkers
  */
 
 #ifndef TLEFTRIGHT_H
@@ -23,10 +14,25 @@ public:
     {
         if(ntlr!=0&&ntlr!=1)
         {
-            std::cerr<<"Tleftright can only take value 0 or 1\n";
-            exit(EXIT_FAILURE);
+            throw "Tleftright can only take value 0 or 1\n";
         }
         tlr=ntlr;
+    }
+    tleftright()
+    {
+        tlr=0;
+    }
+    bool operator==(tleftright const& a)
+    {
+        if(tlr==a.tlr)
+            return 1;
+        return 0;
+    }
+    bool operator!=(tleftright const& a)
+    {
+        if(tlr==a.tlr)
+            return 0;
+        return 1;
     }
 };
 

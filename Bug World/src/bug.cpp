@@ -3,18 +3,33 @@
 Bug::Bug(tcolor i_color, int i_progid, int i_resting)
 {
     color=i_color;
+    if(color==tcolor(1))
+        state=1;
+    else
+        state=2;
     prog_id=i_progid;
+    remaining_rest=0;
+    if(i_resting<0)
+        throw "There can't be a negative value as the resting time.\n";
     resting=i_resting;
+    direction=0;
+    dead=0;
+    has_food=0;
+    
 }
 
 void Bug::start_resting(){
-    resting=1;
-    remaining_rest=14;
+    remaining_rest=resting;
 }
 
 bool Bug::rested(){
-    remaining_rest--;
-    return resting;
+    if(remaining_rest>0)
+    {
+        remaining_rest--;
+        return 0;
+    }
+    else
+        return 1;
 }
 
 int Bug::get_progid()
@@ -60,6 +75,8 @@ bool Bug::get_food(){
     
 void Bug::set_food(bool new_food)
 {
+    if(new_food<0)
+        throw "There can't be a negative value as the resting time.\n";
     has_food=new_food;
 }
    
@@ -70,5 +87,9 @@ bool Bug::is_dead()
 
 void Bug::kill()
 {
+    if(dead==1)
+    {
+        throw "Bug cannot be killed again\n";
+    }
     dead=1;
 }

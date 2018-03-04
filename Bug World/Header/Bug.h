@@ -1,9 +1,6 @@
 
 /* 
- * File:   Bug.h
- * Author: oana
- *
- * Created on February 26, 2018, 11:17 PM
+ * Class Bug
  */
 
 

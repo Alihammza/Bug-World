@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /* 
- * File:   tdir.h
- * Author: oana
- *
- * Created on March 2, 2018, 6:03 PM
+ * Helper class tdir equiped with validity checker and equality operators.
  */
 
 #ifndef TDIR_H
@@ -24,11 +15,27 @@ public:
     {
         if(newdir>5||newdir<0)
         {
-            std::cerr<<"Direction should be in 0..5\n";
-            exit(EXIT_FAILURE);
+            throw "Direction should be in 0..5\n";
         }
         direction=newdir;
     }
+    tdir()
+    {
+        direction=0;
+    }
+    bool operator==(tdir const& a)
+    {
+        if(direction==a.direction)
+            return 1;
+        return 0;
+    }
+    bool operator!=(tdir const& a)
+    {
+        if(direction==a.direction)
+            return 0;
+        return 1;
+    }
+    
 };
 #endif /* TDIR_H */
 

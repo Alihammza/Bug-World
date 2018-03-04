@@ -1,14 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   tstate.h
- * Author: oana
- *
- * Created on March 2, 2018, 6:49 PM
+ * Helper class tstate equiped with validity checker and comparison operators
  */
 
 #ifndef TSTATE_H
@@ -20,15 +11,30 @@ class tstate{
 private:
     int state;
 public:
-    tmark(int nstate)
+    tstate(int nstate)
     {
         if(nstate<0||nstate>9999)
         {
-            std::cerr<<"State should be in 0..9999\n";
-            exit(EXIT_FAILURE);
+            throw "State should be in 0..9999\n";
         }
         state=nstate;
     }
+    tstate()
+    {
+        state=0;
+    }
+    bool operator==(tstate const& a)
+    {
+        if(state==a.state)
+            return 1;
+        return 0;
+    }
+    bool operator!=(tstate const& a)
+    {
+        if(state==a.state)
+            return 0;
+        return 1;
+    }   
 };
 
 

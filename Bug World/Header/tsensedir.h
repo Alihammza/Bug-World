@@ -1,14 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   tsensedir.h
- * Author: oana
- *
- * Created on March 2, 2018, 6:34 PM
+ * Helper class tsensedir equiped with validity checker and equality checkers
  */
 
 #ifndef TSENSEDIR_H
@@ -24,10 +15,25 @@ public:
     {
         if(ndi<0||ndi>3)
         {
-            std::cerr<<"Sense direction should be in 0..3\n";
-            exit(EXIT_FAILURE);
+            throw "Sense direction should be in 0..3\n";
         }
         sdir=ndi;
+    }
+    tsensedir()
+    {
+        sdir=0;
+    }
+    bool operator==(tsensedir const& a)
+    {
+        if(sdir==a.sdir)
+            return 1;
+        return 0;
+    }
+    bool operator!=(tsensedir const& a)
+    {
+        if(sdir==a.sdir)
+            return 0;
+        return 1;
     }
 };
 

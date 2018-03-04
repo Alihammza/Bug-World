@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /* 
- * File:   condition.h
- * Author: oana
- *
- * Created on March 2, 2018, 6:51 PM
+ * Helper class tcondition equipped with equality checkers.
  */
 
 #ifndef TCONDITION_H
@@ -21,6 +12,22 @@ public:
     tcondition(int ncondition)
     {
         condition=ncondition;
+    }
+    tcondition()
+    {
+        condition=0;
+    }
+    bool operator==(tcondition const& a)
+    {
+        if(condition==a.condition)
+            return 1;
+        return 0;
+    }
+    bool operator!=(tcondition const& a)
+    {
+        if(condition==a.condition)
+            return 0;
+        return 1;
     }
 };
 

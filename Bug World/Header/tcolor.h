@@ -1,14 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   tcolor.h
- * Author: oana
- *
- * Created on March 2, 2018, 5:35 PM
+ * Helper class tcolor equipped with validity checker and equality operators
  */
 
 #ifndef TCOLOR_H
@@ -16,6 +7,7 @@
 #include <iostream>
 #include <cstdlib>
 
+//0 for black, 1 for red
 class tcolor{
     
 private:
@@ -25,10 +17,25 @@ public:
     {
         if(n_color!=0&&n_color!=1)
         {
-            std::cerr<<"Color can only take value 0 or 1\n";
-            exit(EXIT_FAILURE);
+            throw "Color can only take value 0 or 1\n";
         }
         color=n_color;
+    }
+    tcolor()
+    {
+        color=0;
+    }
+    bool operator==(tcolor const& a)
+    {
+        if(color==a.color)
+            return 1;
+        return 0;
+    }
+    bool operator!=(tcolor const& a)
+    {
+        if(color==a.color)
+            return 0;
+        return 1;
     }
 };
 

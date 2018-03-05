@@ -35,6 +35,10 @@ public:
             return 0;
         return 1;
     }
+    int get_mark()
+    {
+        return mark;
+    }
 };
 
 

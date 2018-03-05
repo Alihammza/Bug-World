@@ -22,14 +22,12 @@ public:
     World();
     World(const World& orig);
     virtual ~World();
-    int width;
-    int length;
-private:
+    
     void load(string filename);
     void execute_cycle();
     Cell get_cell(tposition pos);
-    int* adjacent(tdir dir, tposition pos);
-    int other_color(tcolor col);
+    tposition adjacent(tdir dir, tposition pos);
+    tcolor other_color(tcolor col);
     tcolor winner();
     int red_food();
     int black_food();
@@ -43,7 +41,10 @@ private:
     
     int get_width();
     int get_length();
-
+private:
+    int width;
+    int length;
+    Cell **cell;
 };
 
 #endif /* WORLD_H */

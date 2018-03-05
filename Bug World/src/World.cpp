@@ -1,17 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   World.cpp
- * Author: ali
- * 
- * Created on February 27, 2018, 1:49 AM
- */
-
 #include "World.h"
+#include "Bug.h"
 
 
 
@@ -22,7 +10,7 @@ World::World(const World& orig) {
 }
 
 World::~World() {
-	for (int i = 0; i < this->Length; i++)
+	for (int i = 0; i < this->length; i++)
                 delete[] cell[i];
         delete[] cell;
 	
@@ -40,7 +28,7 @@ int World::get_width(){
     return width;
 }
 
-int World::get_width(){
+int World::get_length(){
     return length;
 }
 
@@ -55,10 +43,10 @@ void World::load(string filename){
 
 
 Cell World::get_cell(tposition pos){
-        int i = pos.first, j = pos.second;
+        int i = pos.tpos_x, j = pos.tpos_y;
         
         if ((i < 0 || j < 0) || (i >= this->width || j >= this->length)){
-            this->error("Invalid position!");
+            throw "Invalid position!";
         }
         
         return this->cell[i][j];
@@ -66,86 +54,83 @@ Cell World::get_cell(tposition pos){
 
 tposition World::adjacent(tdir dir, tposition pos){
     
-    int i = pos.first, j = pos.second;
+    int i = pos.tpos_x, j = pos.tpos_y;
     tposition tmp;
 
     if ((i < 0 || j < 0) || (i >= this->width || j >= this->length)){
-        this->error("Invalid position!");
+        throw "Invalid position!";
     }
 
-    if (dir > 5 || dir < 0){
-        this->error("Invalid direction!");
-    }
     if (dir == 0){
-        tmp.first = i + 1;
-        tmp.second = j;
+        tmp.tpos_x = i + 1;
+        tmp.tpos_y = j;
         return tmp;
     }
 
     if (dir == 1){
         if (j%2 == 0){
-            tmp.first = i;
-            tmp.second = j + 1;
+            tmp.tpos_x = i;
+            tmp.tpos_y = j + 1;
             return tmp;
         }
         else {
-            tmp.first = i+1;
-            tmp.second = j+1;
+            tmp.tpos_x = i+1;
+            tmp.tpos_y = j+1;
             return tmp;
         }
     }
     else if (dir == 2){
         if (j%2 == 0){
-            tmp.first = i - 1;
-            tmp.second = j + 1;
+            tmp.tpos_x = i - 1;
+            tmp.tpos_y = j + 1;
             return tmp;
         }
         else {
-            tmp.first = i;
-            tmp.second = j + 1;
+            tmp.tpos_x = i;
+            tmp.tpos_y = j + 1;
             return tmp;
         }
     }
     else if (dir == 3){
-        tmp.first = i - 1;
-        tmp.second = j;
+        tmp.tpos_x = i - 1;
+        tmp.tpos_y = j;
         return tmp;
     }
     else if (dir == 4){
         if (j%2 == 0){
-            tmp.first = i - 1;
-            tmp.second = j - 1;
+            tmp.tpos_x = i - 1;
+            tmp.tpos_y = j - 1;
             return tmp;
         }
         else {
-            tmp.first = i;
-            tmp.second = j - 1;
+            tmp.tpos_x = i;
+            tmp.tpos_y = j - 1;
             return tmp;
         }
     }
     else{
         if (j%2 == 0){
-            tmp.first = i;
-            tmp.second = j - 1;
+            tmp.tpos_x = i;
+            tmp.tpos_y = j - 1;
             return tmp;
         }
         else {
-            tmp.first = i +1;
-            tmp.first = j -1;
+            tmp.tpos_x = i +1;
+            tmp.tpos_x = j -1;
             return tmp;
         }
     }
  }
 
-tcolor World::other_color(int col){
-	return 1 - col;
+tcolor World::other_color(tcolor col){
+	return tcolor(1 - col.get_color());
 }
 int World::red_food() {
     int count = 0;
     for (int i = 0; i < this->width; i++){
         for(int j = 0; j < this->length; j++){
             if (this->cell[i][j].is_red_home_area()){
-                count += this->board[i][j].get_food();
+                count += this->cell[i][j].get_food();
             }
         }        
     }
@@ -156,8 +141,8 @@ int World::black_food() {
     int count = 0;
     for (int i = 0; i < this->width; i++){
         for(int j = 0; j < this->length; j++){
-            if (this->board[i][j].is_black_home_area()){
-                count += this->board[i][j].get_food();
+            if (this->cell[i][j].is_black_home_area()){
+                count += this->cell[i][j].get_food();
             }
         }        
     }
@@ -170,7 +155,7 @@ int World::black_count() {
         for(int j = 0; j < this->length; j++){
             Bug* bug= this->cell[j][i].get_occupant();
             
-            if (bug == nullptr || bug->get_color() == 1){
+            if (bug == NULL || bug->get_color() == 1){
                 continue;
             }
             count++;
@@ -184,9 +169,9 @@ int World::red_count() {
     int count = 0;
     for (int i = 0; i < this->width; i++){
         for(int j = 0; j < this->length; j++){
-            Bug* bug = this->cell[j][i].get_occupant();
+            Bug* bug = new Bug(*this->cell[j][i].get_occupant());
             
-            if (bug == nullptr || bug->get_color() == 0){
+            if (bug == NULL || bug->get_color() == 0){
                 continue;
             }
             count++;
@@ -207,8 +192,6 @@ tcolor World::winner() {
             return 0;
         }
         else {
-			return -1;
-			} 
-    }
-
-
+            return -1;
+        } 
+}

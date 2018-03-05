@@ -15,6 +15,7 @@
 #define WORLD_H
 #include <string>
 #include "headers.h"
+#include "Cell.h"
 using namespace std;
 
 class World {

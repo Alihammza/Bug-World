@@ -37,7 +37,7 @@ bool Marker::check_marker(tmark mark, tcolor col){
 	    
 }
    
-bool check_other_marker(tcolor col){
+bool Marker::check_other_marker(tcolor col){
 	for (int i = 0; i < 6; i++){
             if (this->bits & 1<<(i + 6*col)){
                 return true;

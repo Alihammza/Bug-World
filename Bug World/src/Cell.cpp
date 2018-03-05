@@ -1,6 +1,4 @@
-#include "Marker.h"
 #include "Cell.h"
-#include "Bug.h"
 #include <cstdlib>
 /*
  * # - obstacle
@@ -17,44 +15,34 @@ Cell::Cell(char symb)
 {
     switch(symb){
         case '#' :
-            occupant=NULL;
             obstructed=1;
             food=0;
-            mark=NULL;
             home_black_bug=0;
             home_red_bug=0;
             break;
         case '.':
-            occupant=NULL;
             obstructed=0;
             food=0;
-            mark=NULL;
             home_black_bug=0;
             home_red_bug=0;
             break;
-        case '-':
-            occupant=NULL;
+        case '_':
             obstructed=1;
             food=0;
-            mark=NULL;
             home_black_bug=1;
             home_red_bug=0;
             break;
         case '+':
-            occupant=NULL;
             obstructed=1;
             food=0;
-            mark=NULL;
             home_black_bug=0;
             home_red_bug=1;
             break;
         default:
-            if(symb<='9'&&symb>='0')
+            if(symb-'0'<=9&&symb-'0'>=0)
             {
-                occupant=NULL;
                 obstructed=0;
                 food=symb-'0';
-                mark=NULL;
                 home_black_bug=0;
                 home_red_bug=0;
             }
@@ -64,19 +52,18 @@ Cell::Cell(char symb)
             }
             break;
     }
-    
+    mark=NULL;
+    occupant=NULL;
 }
-
-Cell::~Cell(){}
     
-Bug Cell::get_occupant()
+Bug* Cell::get_occupant()
 {
     return occupant;
 }
     
 void Cell::set_occupant(Bug new_occupant)
 {
-    occupant=new_occupant;
+    occupant=new Bug(new_occupant);
 }
     
 int Cell::get_food()

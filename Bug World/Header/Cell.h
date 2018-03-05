@@ -1,5 +1,14 @@
 /*
- * Class Cell
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/* 
+ * File:   Cell.h
+ * Author: oana
+ *
+ * Created on March 2, 2018, 5:20 PM
  */
 
 #ifndef CELL_H
@@ -10,12 +19,12 @@ private:
     Bug occupant;
     bool obstructed;
     int food;
-    Marker mark;
     bool home_black_bug;
     bool home_red_bug;
 public:
+    Marker mark;
     Cell(char symb);
-    ~Cell();
+    ~Cell(){};
     Bug get_occupant();
     void set_occupant(Bug new_occupant);
     int get_food();

@@ -170,7 +170,7 @@ int World::black_count() {
         for(int j = 0; j < this->length; j++){
             Bug* bug= this->cell[j][i].get_occupant();
             
-            if (bug == nullptr || b->get_color() == 1){
+            if (bug == nullptr || bug->get_color() == 1){
                 continue;
             }
             count++;
@@ -186,7 +186,7 @@ int World::red_count() {
         for(int j = 0; j < this->length; j++){
             Bug* bug = this->cell[j][i].get_occupant();
             
-            if (bug == nullptr || b->get_color() == 0){
+            if (bug == nullptr || bug->get_color() == 0){
                 continue;
             }
             count++;

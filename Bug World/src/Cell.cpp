@@ -1,3 +1,5 @@
+
+
 #include "Bug.h"
 #include <cstdlib>
 /*
@@ -9,7 +11,7 @@
  * 
  * as many bugs as many home area cells
  */
-int i=1;//bug prog id index
+
 
 Cell::Cell(char symb)
 {
@@ -31,7 +33,7 @@ Cell::Cell(char symb)
             home_red_bug=0;
             break;
         case '-':
-            occupant=new Bug(0,i,14);
+            occupant=NULL;
             i++;
             obstructed=1;
             food=0;
@@ -40,7 +42,7 @@ Cell::Cell(char symb)
             home_red_bug=0;
             break;
         case '+':
-            occupant=new Bug(1,i,14);
+            occupant=NULL;
             i++;
             obstructed=1;
             food=0;

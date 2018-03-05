@@ -1,14 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   Marker.cpp
- * Author: ali
- * 
- * Created on February 27, 2018, 1:57 AM
+ * Marker class implementation
  */
 
 #include "Marker.h"
@@ -24,24 +15,24 @@ Marker::~Marker() {
 }
 
 void Marker::set_bits(int bit){
-    int bits= bit;
-    }
+    bits= bit;
+}
     
 int Marker::get_bits(){
     return bits;
 }
 
-void set_marker(tmark mark, tcolor col){
+void Marker::set_marker(tmark mark, tcolor col){
     this->bits = this->bits | 1<<(mark+6*col);
      
 }
  
-void clear_marker(tmark mark, tcolor col){
+void Marker::clear_marker(tmark mark, tcolor col){
 	this->bits = this->bits & ~1<<(mark+6*col);
      
 }
  
-bool check_marker(tmark mark, tcolor col){
+bool Marker::check_marker(tmark mark, tcolor col){
     return this->bits & 1<<(mark+6*col);
 	    
 }
@@ -55,4 +46,3 @@ bool check_other_marker(tcolor col){
     return false;
 	
 }
-

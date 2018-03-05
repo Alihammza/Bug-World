@@ -20,7 +20,7 @@ private:
 public:
     Marker(const Marker& orig);
     virtual ~Marker();
-    Marker::Marker();
+    Marker();
     void set_marker(tmark mark, tcolor col);
     void clear_marker(tmark mark, tcolor col);
     bool check_marker(tmark mark, tcolor col);

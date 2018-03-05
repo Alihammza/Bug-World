@@ -2,15 +2,15 @@
  * Helper class tposition equiped with validity checker and equality checkers
  */
 
+
 #ifndef TPOSITION_H
 #define TPOSITION_H
 
 class tposition
 {
-private:
+public:
     int tpos_x;
     int tpos_y;
-public:
     tposition(int pos_x,int pos_y)
     {
         tpos_x=pos_x;

@@ -34,7 +34,6 @@ Cell::Cell(char symb)
             break;
         case '-':
             occupant=NULL;
-            i++;
             obstructed=1;
             food=0;
             mark=NULL;
@@ -43,7 +42,6 @@ Cell::Cell(char symb)
             break;
         case '+':
             occupant=NULL;
-            i++;
             obstructed=1;
             food=0;
             mark=NULL;
